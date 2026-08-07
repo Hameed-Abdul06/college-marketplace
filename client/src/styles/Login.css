@@ -1,0 +1,132 @@
+.login-container{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#111827;
+    padding:20px;
+}
+
+.login-card{
+    width:400px;
+    background:#1f2937;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+.login-card h2{
+    color:white;
+    margin-bottom:30px;
+    font-size:36px;
+}
+
+.login-card form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.login-card input{
+    padding:14px;
+    border:1px solid #374151;
+    border-radius:8px;
+    background:#111827;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.login-card input::placeholder{
+    color:#9ca3af;
+}
+
+.login-card input:focus{
+    border-color:#2563eb;
+}
+
+.login-card button{
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-card button:hover{
+    background:#1d4ed8;
+}
+
+.login-card p{
+    margin-top:20px;
+    color:#d1d5db;
+}
+
+.login-card a{
+    color:#3b82f6;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.login-card a:hover{
+    text-decoration:underline;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.input-group input{
+    margin:0;
+}
+
+.error{
+    color:#ef4444;
+    font-size:13px;
+    margin-top:6px;
+    margin-left:4px;
+    text-align:left;
+    min-height:16px;
+}
+
+.input-error{
+    border:2px solid #ef4444 !important;
+}
+
+.input-error::placeholder{
+    color:#ef4444;
+    opacity:1;
+}
+
+.input-error{
+    border:2px solid #ef4444 !important;
+}
+
+.input-error::placeholder{
+    color:#ef4444;
+    opacity:1;
+}
+
+.error{
+    color:#ef4444;
+    font-size:13px;
+    margin-top:-8px;
+    margin-bottom:15px;
+    margin-left:6px;
+    text-align:left;
+}
+
+.input-error{
+    border:2px solid #ef4444 !important;
+}
+
+.input-error::placeholder{
+    color:#ef4444;
+    opacity:1;
+}
