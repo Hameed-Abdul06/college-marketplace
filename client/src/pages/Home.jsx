@@ -1,7 +1,10 @@
 import "../styles/Home.css";
 import Navbar from "../components/common/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+    const navigate = useNavigate();
+
     return (
         <>
             <Navbar />
@@ -14,11 +17,11 @@ function Home() {
                 </p>
 
                 <div className="hero-buttons">
-                    <button className="primary-btn">
+                    <button className="primary-btn" onClick={() => navigate("/products")}>
                         Browse Products
                     </button>
 
-                    <button className="secondary-btn">
+                    <button className="secondary-btn" onClick={() => navigate("/sell")}>
                         Sell Product
                     </button>
                 </div>

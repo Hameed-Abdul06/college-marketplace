@@ -1,0 +1,62 @@
+.listing-card {
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(20, 24, 33, 0.08);
+}
+
+.listing-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f2f3f5;
+}
+
+.listing-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.listing-card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(28, 31, 38, 0.72);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.listing-card-body {
+  padding: 12px 14px 14px;
+}
+
+.listing-card-body h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1c1f26;
+  margin: 0 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listing-card-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2f6fed;
+  margin: 0;
+}

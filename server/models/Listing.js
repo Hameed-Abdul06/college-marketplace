@@ -33,6 +33,11 @@ const listingSchema = new mongoose.Schema(
       required: true,
     },
 
+    sellerPhone: {
+      type: String,
+      required: true,
+    },
+
     status: {
       type: String,
       default: "Available",

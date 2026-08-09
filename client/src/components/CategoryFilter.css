@@ -1,0 +1,34 @@
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.chip {
+  border: 1px solid #d8dce1;
+  background: #ffffff;
+  color: #4b5563;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: #2f6fed;
+  color: #2f6fed;
+}
+
+.chip-active {
+  background: #2f6fed;
+  border-color: #2f6fed;
+  color: #ffffff;
+}
+
+.chip-active:hover {
+  color: #ffffff;
+}

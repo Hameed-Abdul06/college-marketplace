@@ -1,0 +1,46 @@
+.products {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.products-header {
+  margin-bottom: 8px;
+}
+
+.products-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1c1f26;
+  margin: 0 0 4px;
+}
+
+.products-header p {
+  color: #6b7280;
+  margin: 0 0 18px;
+  font-size: 15px;
+}
+
+.state-msg {
+  color: #6b7280;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+.state-error {
+  color: #d64545;
+}
+
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 480px) {
+  .listing-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

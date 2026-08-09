@@ -8,10 +8,11 @@ const createListing = async (req, res) => {
             description,
             price,
             category,
-            condition
+            condition,
+            sellerPhone,
         } = req.body;
 
-        if (!title || !description || !price || !category || !condition) {
+        if (!title || !description || !price || !category || !condition || !sellerPhone) {
             return res.status(400).json({
                 message: "Please fill all fields",
             });
@@ -23,6 +24,7 @@ const createListing = async (req, res) => {
             price,
             category,
             condition,
+            sellerPhone,
             image: req.file ? req.file.filename : null,
             seller: req.user.id,
         });
