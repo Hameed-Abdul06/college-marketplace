@@ -1,0 +1,107 @@
+.sell-page {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    color: #e5e7eb;
+}
+
+.sell-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #93c5fd;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #64748b;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    padding: 8px 16px;
+    margin-right: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3b82f6;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background-color: #2563eb;
+}
+
+.sell-form button[type="submit"] {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #3b82f6;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.sell-form button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+.sell-form button[type="submit"]:disabled {
+    background-color: #475569;
+    cursor: not-allowed;
+}
