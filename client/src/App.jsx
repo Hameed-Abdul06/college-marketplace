@@ -16,9 +16,10 @@ function App() {
     return (
         <BrowserRouter>
 
-            {/* Navigation bar */}
+            {/* Navbar */}
             <Navbar />
 
+            {/* Pages */}
             <Routes>
 
                 {/* Home */}
