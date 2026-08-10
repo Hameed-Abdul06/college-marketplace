@@ -108,8 +108,56 @@ const getProfile = async (req, res) => {
     }
 };
 
+// Update Logged-in User Profile
+const updateProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found",
+            });
+        }
+
+        const { fullName, email } = req.body;
+
+        if (fullName) {
+            user.fullName = fullName;
+        }
+
+        if (email) {
+            const existingUser = await User.findOne({
+                email,
+                _id: { $ne: user._id },
+            });
+
+            if (existingUser) {
+                return res.status(400).json({
+                    message: "Email already in use",
+                });
+            }
+
+            user.email = email;
+        }
+
+        await user.save();
+
+        res.status(200).json({
+            _id: user._id,
+            fullName: user.fullName,
+            email: user.email,
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+        });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
     getProfile,
+    updateProfile,
 };
