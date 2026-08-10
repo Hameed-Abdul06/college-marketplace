@@ -32,12 +32,21 @@ export const getListingById = async (id) => {
     return res.data;
 };
 
-export const getImageUrl = (filename) => {
-    if (!filename) {
-        return "";
+export const getImageUrl = (image) => {
+    if (!image) {
+        return "https://via.placeholder.com/400x300?text=No+Image";
     }
 
+    // New Cloudinary images
+    if (
+        image.startsWith("http://") ||
+        image.startsWith("https://")
+    ) {
+        return image;
+    }
+
+    // Old images stored in server/uploads
     const SERVER_ROOT = API_BASE.replace(/\/api\/?$/, "");
 
-    return `${SERVER_ROOT}/uploads/${encodeURIComponent(filename)}`;
+    return `${SERVER_ROOT}/uploads/${encodeURIComponent(image)}`;
 };

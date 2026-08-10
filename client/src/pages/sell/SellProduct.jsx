@@ -28,7 +28,7 @@ function SellProduct() {
     };
 
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        setImage(e.target.files[0] || null);
     };
 
     const handleSubmit = async (e) => {
@@ -70,8 +70,12 @@ function SellProduct() {
 
             const token = localStorage.getItem("token");
 
+            const API_URL =
+                import.meta.env.VITE_API_URL ||
+                "http://localhost:5000/api";
+
             const response = await fetch(
-                "http://localhost:5000/api/listings",
+                `${API_URL}/listings`,
                 {
                     method: "POST",
                     headers: {
@@ -82,18 +86,24 @@ function SellProduct() {
             );
 
             if (!response.ok) {
-                const errData = await response.json().catch(() => ({}));
+                const errData = await response
+                    .json()
+                    .catch(() => ({}));
 
                 throw new Error(
-                    errData.message || "Failed to post product"
+                    errData.message ||
+                    "Failed to post product"
                 );
             }
 
             navigate("/profile");
+
         } catch (err) {
+            console.error("POST LISTING ERROR:", err);
+
             setError(
                 err.message ||
-                    "Something went wrong. Please try again."
+                "Something went wrong. Please try again."
             );
         } finally {
             setLoading(false);
@@ -102,11 +112,19 @@ function SellProduct() {
 
     return (
         <div className="sell-page">
+
             <h1>Sell Your Product</h1>
 
-            {error && <p className="form-error">{error}</p>}
+            {error && (
+                <p className="form-error">
+                    {error}
+                </p>
+            )}
 
-            <form className="sell-form" onSubmit={handleSubmit}>
+            <form
+                className="sell-form"
+                onSubmit={handleSubmit}
+            >
 
                 {/* Product Name */}
                 <div className="form-group">
@@ -130,7 +148,7 @@ function SellProduct() {
                         placeholder="Enter product description"
                         value={formData.description}
                         onChange={handleChange}
-                    ></textarea>
+                    />
                 </div>
 
                 {/* Price */}
@@ -155,11 +173,25 @@ function SellProduct() {
                         value={formData.category}
                         onChange={handleChange}
                     >
-                        <option value="">Select category</option>
-                        <option value="Books">Books</option>
-                        <option value="Electronics">Electronics</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Other">Other</option>
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Books">
+                            Books
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Clothing">
+                            Clothing
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
                     </select>
                 </div>
 
@@ -172,15 +204,29 @@ function SellProduct() {
                         value={formData.condition}
                         onChange={handleChange}
                     >
-                        <option value="">Select condition</option>
-                        <option value="New">New</option>
-                        <option value="Like New">Like New</option>
-                        <option value="Good">Good</option>
-                        <option value="Used">Used</option>
+                        <option value="">
+                            Select condition
+                        </option>
+
+                        <option value="New">
+                            New
+                        </option>
+
+                        <option value="Like New">
+                            Like New
+                        </option>
+
+                        <option value="Good">
+                            Good
+                        </option>
+
+                        <option value="Used">
+                            Used
+                        </option>
                     </select>
                 </div>
 
-                {/* Phone Number */}
+                {/* Phone */}
                 <div className="form-group">
                     <label>Phone Number</label>
 
@@ -194,7 +240,7 @@ function SellProduct() {
                     />
                 </div>
 
-                {/* Product Image */}
+                {/* Image */}
                 <div className="form-group">
                     <label>Product Image</label>
 
@@ -206,8 +252,13 @@ function SellProduct() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" disabled={loading}>
-                    {loading ? "Posting..." : "Post Product"}
+                <button
+                    type="submit"
+                    disabled={loading}
+                >
+                    {loading
+                        ? "Posting..."
+                        : "Post Product"}
                 </button>
 
             </form>

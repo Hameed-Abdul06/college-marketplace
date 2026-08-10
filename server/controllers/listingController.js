@@ -12,7 +12,14 @@ const createListing = async (req, res) => {
             sellerPhone,
         } = req.body;
 
-        if (!title || !description || !price || !category || !condition || !sellerPhone) {
+        if (
+            !title ||
+            !description ||
+            !price ||
+            !category ||
+            !condition ||
+            !sellerPhone
+        ) {
             return res.status(400).json({
                 message: "Please fill all fields",
             });
@@ -25,19 +32,22 @@ const createListing = async (req, res) => {
             category,
             condition,
             sellerPhone,
-            image: req.file ? req.file.filename : null,
+
+            // Cloudinary image URL
+            image: req.file ? req.file.path : null,
+
             seller: req.user.id,
         });
 
         res.status(201).json(listing);
-
     } catch (error) {
+        console.error("CREATE LISTING ERROR:", error);
+
         res.status(500).json({
             message: error.message,
         });
     }
 };
-
 
 // Get My Listings
 const getMyListings = async (req, res) => {
@@ -47,14 +57,12 @@ const getMyListings = async (req, res) => {
         });
 
         res.json(listings);
-
     } catch (error) {
         res.status(500).json({
             message: error.message,
         });
     }
 };
-
 
 // Update Listing
 const updateListing = async (req, res) => {
@@ -72,14 +80,12 @@ const updateListing = async (req, res) => {
         await listing.save();
 
         res.json(listing);
-
     } catch (error) {
         res.status(500).json({
             message: error.message,
         });
     }
 };
-
 
 // Delete Listing
 const deleteListing = async (req, res) => {
@@ -97,14 +103,12 @@ const deleteListing = async (req, res) => {
         res.json({
             message: "Listing deleted",
         });
-
     } catch (error) {
         res.status(500).json({
             message: error.message,
         });
     }
 };
-
 
 // Mark Item Sold
 const markAsSold = async (req, res) => {
@@ -122,14 +126,12 @@ const markAsSold = async (req, res) => {
         await listing.save();
 
         res.json(listing);
-
     } catch (error) {
         res.status(500).json({
             message: error.message,
         });
     }
 };
-
 
 module.exports = {
     createListing,
