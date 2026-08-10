@@ -7,6 +7,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Login() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let newErrors = {};
@@ -44,52 +45,112 @@ function Login() {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            login({
-                email,
-            });
+            setLoading(true);
 
-            navigate("/");
+            try {
+                const result = await login({
+                    email,
+                    password,
+                });
+
+                if (result.success) {
+                    navigate("/");
+                } else {
+                    setErrors({
+                        email: result.data.message || "Login failed",
+                    });
+                    setLoading(false);
+                }
+            } catch (error) {
+                setErrors({
+                    email: "Unable to connect to server",
+                });
+                setLoading(false);
+            }
         }
     };
 
     return (
         <div className="login-container">
+
             <div className="login-card">
 
-                <h2>Login</h2>
+                <div className="login-header">
+                    <div className="login-icon">
+                        🔐
+                    </div>
+
+                    <h2>Welcome Back</h2>
+
+                    <p className="login-subtitle">
+                        Login to your College Marketplace account
+                    </p>
+                </div>
 
                 <form onSubmit={handleSubmit}>
 
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder={errors.email || "College Email"}
-                        value={email}
-                        onChange={handleChange}
-                        className={errors.email ? "input-error" : ""}
-                    />
+                    <div className="input-group">
+                        <label>Email</label>
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder={errors.password || "Password"}
-                        value={password}
-                        onChange={handleChange}
-                        className={errors.password ? "input-error" : ""}
-                    />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder={
+                                errors.email || "College Email"
+                            }
+                            value={email}
+                            onChange={handleChange}
+                            className={
+                                errors.email ? "input-error" : ""
+                            }
+                            disabled={loading}
+                        />
+                    </div>
 
-                    <button type="submit">
-                        Login
+                    <div className="input-group">
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder={
+                                errors.password || "Password"
+                            }
+                            value={password}
+                            onChange={handleChange}
+                            className={
+                                errors.password ? "input-error" : ""
+                            }
+                            disabled={loading}
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={loading ? "login-loading" : ""}
+                    >
+                        {loading ? (
+                            <>
+                                <span className="spinner"></span>
+                                Logging in...
+                            </>
+                        ) : (
+                            "Login"
+                        )}
                     </button>
 
                 </form>
 
-                <p>
+                <p className="register-link">
                     Don't have an account?{" "}
-                    <Link to="/register">Register</Link>
+                    <Link to="/register">
+                        Register
+                    </Link>
                 </p>
 
             </div>
+
         </div>
     );
 }

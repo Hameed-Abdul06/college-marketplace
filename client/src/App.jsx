@@ -4,60 +4,85 @@ import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import SellProduct from "./pages/sell/SellProduct";
-import EditListing from "./pages/sell/EditListing"; // NEW - add this import line
-import ItemDetails from "./pages/ItemDetails"; // NEW - marketplace item details page
+import EditListing from "./pages/sell/EditListing";
+import ItemDetails from "./pages/ItemDetails";
 
+import Navbar from "./components/common/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
+    return (
+        <BrowserRouter>
 
-        <Route path="/" element={<Home />} />
+            <Navbar />
 
-        <Route path="/login" element={<Login />} />
+            <Routes>
 
-        <Route path="/register" element={<Register />} />
+                {/* Home */}
+                <Route
+                    path="/"
+                    element={<Home />}
+                />
 
-        <Route path="/products" element={<Products />} />
+                {/* Authentication */}
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
 
-        {/* NEW - marketplace item details page */}
-        <Route path="/listing/:id" element={<ItemDetails />} />
+                <Route
+                    path="/register"
+                    element={<Register />}
+                />
 
-        <Route
-          path="/sell"
-          element={
-            <ProtectedRoute>
-              <SellProduct />
-            </ProtectedRoute>
-          }
-        />
+                {/* Products */}
+                <Route
+                    path="/products"
+                    element={<Products />}
+                />
 
-        {/* NEW - add this whole Route block, right after /sell */}
-        <Route
-          path="/edit-listing/:id"
-          element={
-            <ProtectedRoute>
-              <EditListing />
-            </ProtectedRoute>
-          }
-        />
+                {/* Item Details */}
+                <Route
+                    path="/listing/:id"
+                    element={<ItemDetails />}
+                />
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+                {/* Sell Product */}
+                <Route
+                    path="/sell"
+                    element={
+                        <ProtectedRoute>
+                            <SellProduct />
+                        </ProtectedRoute>
+                    }
+                />
 
-      </Routes>
-    </BrowserRouter>
-  );
+                {/* Edit Listing */}
+                <Route
+                    path="/edit-listing/:id"
+                    element={
+                        <ProtectedRoute>
+                            <EditListing />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* Profile */}
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;
