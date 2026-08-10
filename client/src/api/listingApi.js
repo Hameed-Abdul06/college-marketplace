@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE =
     import.meta.env.VITE_API_URL ||
-    "https://college-marketplace-server.onrender.com/api";
+    "https://college-marketplace-hae2.onrender.com/api";
 
 export const getListings = async (search = "", category = "All") => {
     const params = {};
