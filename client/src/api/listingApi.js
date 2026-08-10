@@ -1,7 +1,9 @@
 import axios from "axios";
 
 // Adjust this if your backend runs elsewhere (check your existing api.js / .env)
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE =
+    import.meta.env.VITE_API_URL ||
+    "https://college-marketplace-server.onrender.com/api";
 
 export const getListings = async (search = "", category = "All") => {
   const params = {};
