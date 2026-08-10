@@ -1,16 +1,42 @@
 import "../styles/Home.css";
-import Navbar from "../components/common/Navbar";
 
 function Home() {
     return (
-        <>
-            <Navbar />
+        <main className="home">
 
-            <main className="home">
-                <h1>Welcome to College Marketplace</h1>
+            {/* Background Video */}
+            <video
+                className="home-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+            >
+                <source
+                    src="/videos/marketplace.mp4"
+                    type="video/mp4"
+                />
+            </video>
+
+            {/* Dark Overlay */}
+            <div className="video-overlay"></div>
+
+            {/* Home Content */}
+            <div className="hero-content">
+
+                <div className="hero-badge">
+                    🎓 Your Campus Marketplace
+                </div>
+
+                <h1>
+                    Welcome to
+                    <span>College Marketplace</span>
+                </h1>
 
                 <p>
-                    Buy, Sell, and Discover Everything You Need on Campus.
+                    Buy, sell, and discover everything you need on campus.
+                    Find great deals from fellow students and make campus
+                    life easier.
                 </p>
 
                 <div className="hero-buttons">
@@ -23,9 +49,9 @@ function Home() {
                     </button>
                 </div>
 
+            </div>
 
-            </main>
-        </>
+        </main>
     );
 }
 

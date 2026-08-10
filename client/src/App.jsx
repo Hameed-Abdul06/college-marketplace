@@ -3,33 +3,47 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
 
+import Navbar from "./components/common/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
+    return (
+        <BrowserRouter>
 
-        <Route path="/" element={<Home />} />
+            <Navbar />
 
-        <Route path="/login" element={<Login />} />
+            <Routes>
 
-        <Route path="/register" element={<Register />} />
+                <Route
+                    path="/"
+                    element={<Home />}
+                />
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
 
-      </Routes>
-    </BrowserRouter>
-  );
+                <Route
+                    path="/register"
+                    element={<Register />}
+                />
+
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;

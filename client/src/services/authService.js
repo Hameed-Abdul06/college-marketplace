@@ -23,3 +23,27 @@ export const loginUser = async (userData) => {
 
     return response.json();
 };
+
+export const getProfile = async (token) => {
+    const response = await fetch(`${API_URL}/profile`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.json();
+};
+
+export const updateProfile = async (token, userData) => {
+    const response = await fetch(`${API_URL}/profile`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(userData),
+    });
+
+    return response.json();
+};

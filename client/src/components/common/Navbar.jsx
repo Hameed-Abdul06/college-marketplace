@@ -1,10 +1,21 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "../../styles/Navbar.css";
 
 function Navbar() {
     const { user, logout } = useContext(AuthContext);
+    const [loggingOut, setLoggingOut] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        setLoggingOut(true);
+
+        setTimeout(() => {
+            logout();
+            navigate("/");
+        }, 600);
+    };
 
     return (
         <nav className="navbar">
@@ -13,7 +24,7 @@ function Navbar() {
                 <Link to="/">College Marketplace</Link>
             </div>
 
-            <ul className="nav-links">
+            <ul className={`nav-links ${loggingOut ? "logout-animation" : ""}`}>
 
                 <li>
                     <Link to="/">Home</Link>
@@ -38,9 +49,17 @@ function Navbar() {
                         <li>
                             <button
                                 className="logout-btn"
-                                onClick={logout}
+                                onClick={handleLogout}
+                                disabled={loggingOut}
                             >
-                                Logout
+                                {loggingOut ? (
+                                    <>
+                                        <span className="logout-spinner"></span>
+                                        Logging out...
+                                    </>
+                                ) : (
+                                    "Logout"
+                                )}
                             </button>
                         </li>
                     </>
