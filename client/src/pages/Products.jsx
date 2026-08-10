@@ -13,12 +13,14 @@ function Products() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    // Get categories
     useEffect(() => {
         getCategories()
             .then(setCategories)
             .catch(() => setCategories([]));
     }, []);
 
+    // Get listings
     const fetchListings = useCallback(async () => {
         setLoading(true);
         setError("");
@@ -38,57 +40,75 @@ function Products() {
     }, [fetchListings]);
 
     return (
-        <main className="products-page">
+        <>
+          
 
-            <div className="products-header">
-                <h1>Browse Products</h1>
-                <p>Find what you need from sellers on campus</p>
-            </div>
+            <main className="products-page">
+                <div className="products-container">
 
-            <SearchBar
-                value={search}
-                onChange={setSearch}
-            />
+                    <div className="products-header">
+                        <h1>Browse Products</h1>
+                        <p>
+                            Find what you need from sellers on campus
+                        </p>
+                    </div>
 
-            <CategoryFilter
-                categories={categories.length ? categories : undefined}
-                active={activeCategory}
-                onSelect={setActiveCategory}
-            />
-
-            {loading && (
-                <p className="state-msg">
-                    Loading listings...
-                </p>
-            )}
-
-            {error && (
-                <p className="state-msg state-error">
-                    {error}
-                </p>
-            )}
-
-            {!loading && !error && listings.length === 0 && (
-                <p className="state-msg">
-                    No listings found
-                    {search ? ` for "${search}"` : ""}
-                    {activeCategory !== "All"
-                        ? ` in ${activeCategory}`
-                        : ""}
-                    .
-                </p>
-            )}
-
-            <div className="listing-grid">
-                {listings.map((listing) => (
-                    <ListingCard
-                        key={listing._id}
-                        listing={listing}
+                    <SearchBar
+                        value={search}
+                        onChange={setSearch}
                     />
-                ))}
-            </div>
 
-        </main>
+                    <CategoryFilter
+                        categories={
+                            categories.length
+                                ? categories
+                                : undefined
+                        }
+                        active={activeCategory}
+                        onSelect={setActiveCategory}
+                    />
+
+                    {loading && (
+                        <p className="state-msg">
+                            Loading listings...
+                        </p>
+                    )}
+
+                    {error && (
+                        <p className="state-msg state-error">
+                            {error}
+                        </p>
+                    )}
+
+                    {!loading &&
+                        !error &&
+                        listings.length === 0 && (
+                            <p className="state-msg">
+                                No listings found
+                                {search
+                                    ? ` for "${search}"`
+                                    : ""}
+                                {activeCategory !== "All"
+                                    ? ` in ${activeCategory}`
+                                    : ""}
+                                .
+                            </p>
+                        )}
+
+                    {!loading && !error && listings.length > 0 && (
+                        <div className="listing-grid">
+                            {listings.map((listing) => (
+                                <ListingCard
+                                    key={listing._id}
+                                    listing={listing}
+                                />
+                            ))}
+                        </div>
+                    )}
+
+                </div>
+            </main>
+        </>
     );
 }
 
