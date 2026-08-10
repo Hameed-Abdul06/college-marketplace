@@ -15,6 +15,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
     return (
         <BrowserRouter>
+
+            {/* Navigation bar */}
             <Navbar />
 
             <Routes>
@@ -79,6 +81,7 @@ function App() {
                 />
 
             </Routes>
+
         </BrowserRouter>
     );
 }
