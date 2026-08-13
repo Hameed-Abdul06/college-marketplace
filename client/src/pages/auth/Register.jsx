@@ -13,6 +13,7 @@ function Register() {
 
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -77,19 +78,25 @@ function Register() {
             });
 
             if (data.token) {
+                // Save token so the seller is automatically logged in
                 localStorage.setItem("token", data.token);
 
+                // Go directly to Seller Dashboard
                 setTimeout(() => {
-                    navigate("/login");
+                    navigate("/seller-dashboard");
                 }, 500);
             } else {
                 setErrors({
-                    email: data.message || "Registration failed",
+                    email:
+                        data.message ||
+                        "Registration failed",
                 });
 
                 setLoading(false);
             }
         } catch (error) {
+            console.error("REGISTRATION ERROR:", error);
+
             setErrors({
                 email: "Unable to connect to server",
             });
@@ -119,14 +126,17 @@ function Register() {
 
                 <form onSubmit={handleSubmit}>
 
+                    {/* Full Name */}
                     <div className="input-group">
+
                         <label>Full Name</label>
 
                         <input
                             type="text"
                             name="fullName"
                             placeholder={
-                                errors.fullName || "Full Name"
+                                errors.fullName ||
+                                "Full Name"
                             }
                             value={formData.fullName}
                             onChange={handleChange}
@@ -137,16 +147,20 @@ function Register() {
                             }
                             disabled={loading}
                         />
+
                     </div>
 
+                    {/* Email */}
                     <div className="input-group">
+
                         <label>Email</label>
 
                         <input
                             type="email"
                             name="email"
                             placeholder={
-                                errors.email || "College Email"
+                                errors.email ||
+                                "College Email"
                             }
                             value={formData.email}
                             onChange={handleChange}
@@ -157,9 +171,12 @@ function Register() {
                             }
                             disabled={loading}
                         />
+
                     </div>
 
+                    {/* Password */}
                     <div className="input-group">
+
                         <label>Password</label>
 
                         <input
@@ -181,9 +198,12 @@ function Register() {
                                 {errors.password}
                             </p>
                         )}
+
                     </div>
 
+                    {/* Confirm Password */}
                     <div className="input-group">
+
                         <label>Confirm Password</label>
 
                         <input
@@ -205,13 +225,17 @@ function Register() {
                                 {errors.confirmPassword}
                             </p>
                         )}
+
                     </div>
 
+                    {/* Submit */}
                     <button
                         type="submit"
                         disabled={loading}
                         className={
-                            loading ? "login-loading" : ""
+                            loading
+                                ? "login-loading"
+                                : ""
                         }
                     >
                         {loading ? (
@@ -227,10 +251,13 @@ function Register() {
                 </form>
 
                 <p className="register-link">
+
                     Already have an account?{" "}
+
                     <Link to="/login">
                         Login
                     </Link>
+
                 </p>
 
             </div>

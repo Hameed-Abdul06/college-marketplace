@@ -1,54 +1,77 @@
+/* =========================================
+   PRODUCTS PAGE
+========================================= */
+
 .products-page {
     min-height: calc(100vh - 70px);
     background: #111827;
-    padding: 50px 20px 80px;
+    padding: 45px 20px 80px;
     box-sizing: border-box;
 }
 
 .products-container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Header */
+
+/* =========================================
+   HEADER
+========================================= */
 
 .products-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 .products-header h1 {
-    color: white;
-    font-size: 42px;
-    margin-bottom: 10px;
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+    font-size: 40px;
+    font-weight: 800;
 }
 
 .products-header p {
+    margin: 0;
+
     color: #94a3b8;
-    font-size: 17px;
+    font-size: 16px;
 }
 
-/* Search */
+
+/* =========================================
+   SEARCH
+========================================= */
 
 .search-bar {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
+
     margin: 0 auto 25px;
+
     display: flex;
     align-items: center;
 }
 
 .search-bar input {
     width: 100%;
-    padding: 14px 18px;
-    border: 1px solid #374151;
-    border-radius: 10px;
-    background: #1f2937;
-    color: white;
-    font-size: 16px;
-    outline: none;
+    height: 52px;
+
+    padding: 0 18px;
+
     box-sizing: border-box;
+
+    border: 1px solid #334155;
+    border-radius: 12px;
+
+    background: #f8fafc;
+    color: #111827;
+
+    font-size: 15px;
+
+    outline: none;
 }
 
 .search-bar input::placeholder {
@@ -56,75 +79,136 @@
 }
 
 .search-bar input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* Categories */
+
+/* =========================================
+   CATEGORY FILTER
+========================================= */
 
 .category-filter {
     display: flex;
     justify-content: center;
+    align-items: center;
+
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 35px;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
 }
 
 .category-filter button {
     padding: 10px 20px;
+
     border: 1px solid #475569;
-    background: #1f2937;
-    color: #e5e7eb;
     border-radius: 25px;
+
+    background: #1e293b;
+    color: #e2e8f0;
+
+    font-size: 14px;
+    font-weight: 600;
+
     cursor: pointer;
-    font-size: 15px;
-    transition: 0.25s;
+
+    transition: all 0.2s ease;
 }
 
 .category-filter button:hover {
-    border-color: #2563eb;
+    border-color: #3b82f6;
+
     color: #60a5fa;
+
+    transform: translateY(-1px);
 }
 
 .category-filter button.active {
     background: #2563eb;
-    color: white;
+
     border-color: #2563eb;
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px rgba(37, 99, 235, 0.25);
 }
 
-/* Products */
 
-.listing-grid {
+/* =========================================
+   ⭐ PRODUCT GRID
+   EXACTLY 3 PRODUCTS PER ROW
+========================================= */
+
+.products-container .listing-grid {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
+
     margin: 0 auto;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 24px;
+
+    align-items: start;
 }
 
-/* Messages */
+
+/* Make sure cards don't stretch
+   across the entire row */
+
+.products-container .listing-grid .listing-card {
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   EMPTY / LOADING / ERROR
+========================================= */
 
 .state-msg {
     text-align: center;
+
+    margin: 35px 0;
+
     color: #94a3b8;
-    font-size: 17px;
-    margin: 30px 0;
+
+    font-size: 16px;
 }
 
 .state-error {
     color: #f87171;
 }
 
-/* Mobile */
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 900px) {
 
-    .listing-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .products-container .listing-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 20px;
     }
 }
+
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
@@ -137,15 +221,17 @@
     }
 
     .products-header p {
-        font-size: 15px;
-    }
-
-    .listing-grid {
-        grid-template-columns: 1fr;
+        font-size: 14px;
     }
 
     .search-bar {
         max-width: 100%;
+    }
+
+    .products-container .listing-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 18px;
     }
 
     .category-filter {

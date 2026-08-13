@@ -54,17 +54,23 @@ function Login() {
                 });
 
                 if (result.success) {
-                    navigate("/");
+                    navigate("/seller-dashboard");
                 } else {
                     setErrors({
-                        email: result.data.message || "Login failed",
+                        email:
+                            result.data.message ||
+                            "Login failed",
                     });
+
                     setLoading(false);
                 }
             } catch (error) {
+                console.error("LOGIN ERROR:", error);
+
                 setErrors({
                     email: "Unable to connect to server",
                 });
+
                 setLoading(false);
             }
         }
@@ -76,6 +82,7 @@ function Login() {
             <div className="login-card">
 
                 <div className="login-header">
+
                     <div className="login-icon">
                         🔐
                     </div>
@@ -85,50 +92,65 @@ function Login() {
                     <p className="login-subtitle">
                         Login to your College Marketplace account
                     </p>
+
                 </div>
 
                 <form onSubmit={handleSubmit}>
 
                     <div className="input-group">
+
                         <label>Email</label>
 
                         <input
                             type="email"
                             name="email"
                             placeholder={
-                                errors.email || "College Email"
+                                errors.email ||
+                                "College Email"
                             }
                             value={email}
                             onChange={handleChange}
                             className={
-                                errors.email ? "input-error" : ""
+                                errors.email
+                                    ? "input-error"
+                                    : ""
                             }
                             disabled={loading}
                         />
+
                     </div>
 
                     <div className="input-group">
+
                         <label>Password</label>
 
                         <input
                             type="password"
                             name="password"
                             placeholder={
-                                errors.password || "Password"
+                                errors.password ||
+                                "Password"
                             }
                             value={password}
                             onChange={handleChange}
                             className={
-                                errors.password ? "input-error" : ""
+                                errors.password
+                                    ? "input-error"
+                                    : ""
                             }
                             disabled={loading}
                         />
+
                     </div>
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className={loading ? "login-loading" : ""}
+                        className={
+                            loading
+                                ? "login-loading"
+                                : ""
+                        }
                     >
                         {loading ? (
                             <>
@@ -143,10 +165,13 @@ function Login() {
                 </form>
 
                 <p className="register-link">
+
                     Don't have an account?{" "}
+
                     <Link to="/register">
                         Register
                     </Link>
+
                 </p>
 
             </div>

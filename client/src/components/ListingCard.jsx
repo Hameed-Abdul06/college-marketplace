@@ -10,9 +10,12 @@ function ListingCard({ listing }) {
     return (
         <div
             className="listing-card"
-            onClick={() => navigate(`/listing/${listing._id}`)}
+            onClick={() =>
+                navigate(`/listing/${listing._id}`)
+            }
         >
             <div className="listing-image-container">
+
                 {listing.image && !imageError ? (
                     <img
                         src={getImageUrl(listing.image)}
@@ -26,18 +29,23 @@ function ListingCard({ listing }) {
                         <p>No Image Available</p>
                     </div>
                 )}
+
             </div>
 
             <div className="listing-info">
+
                 <span className="listing-category">
                     {listing.category}
                 </span>
 
-                <h3>{listing.title}</h3>
+                <h3>
+                    {listing.title}
+                </h3>
 
                 <p className="listing-price">
                     ₹{Number(listing.price).toLocaleString("en-IN")}
                 </p>
+
             </div>
         </div>
     );

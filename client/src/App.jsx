@@ -6,6 +6,7 @@ import Products from "./pages/Products";
 import SellProduct from "./pages/sell/SellProduct";
 import EditListing from "./pages/sell/EditListing";
 import ItemDetails from "./pages/ItemDetails";
+import SellerDashboard from "./pages/dashboard/SellerDashboard";
 
 import Navbar from "./components/common/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -67,6 +68,16 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <EditListing />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* Seller Dashboard */}
+                <Route
+                    path="/seller-dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <SellerDashboard />
                         </ProtectedRoute>
                     }
                 />

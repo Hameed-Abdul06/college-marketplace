@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-
 function Navbar() {
     const { user, logout } = useContext(AuthContext);
     const [loggingOut, setLoggingOut] = useState(false);
@@ -21,29 +20,60 @@ function Navbar() {
         <nav className="navbar">
 
             <div className="logo">
-                <Link to="/">College Marketplace</Link>
+                <Link to="/">
+                    College Marketplace
+                </Link>
             </div>
 
-            <ul className={`nav-links ${loggingOut ? "logout-animation" : ""}`}>
+            <ul
+                className={`nav-links ${
+                    loggingOut ? "logout-animation" : ""
+                }`}
+            >
 
+                {/* Home */}
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">
+                        Home
+                    </Link>
                 </li>
 
                 {!user ? (
                     <>
+                        {/* Logged Out */}
+
                         <li>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">
+                                Login
+                            </Link>
                         </li>
 
                         <li>
-                            <Link to="/register">Register</Link>
+                            <Link to="/register">
+                                Register
+                            </Link>
                         </li>
                     </>
                 ) : (
                     <>
+                        {/* Logged In */}
+
                         <li>
-                            <Link to="/profile">Profile</Link>
+                            <Link to="/products">
+                                Products
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/seller-dashboard">
+                                Dashboard
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/profile">
+                                Profile
+                            </Link>
                         </li>
 
                         <li>
