@@ -370,16 +370,26 @@ function SellerDashboard() {
 
                                         <div className="listing-actions">
 
+                                            {/* EDIT */}
+
                                             <button
                                                 className="edit-btn"
                                                 onClick={() =>
                                                     navigate(
-                                                        `/edit-listing/${listing._id}`
+                                                        `/edit-listing/${listing._id}`,
+                                                        {
+                                                            state: {
+                                                                listing: listing
+                                                            }
+                                                        }
                                                     )
                                                 }
                                             >
                                                 Edit
                                             </button>
+
+
+                                            {/* DELETE */}
 
                                             <button
                                                 className="delete-btn"

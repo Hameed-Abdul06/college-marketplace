@@ -59,12 +59,6 @@ function Navbar() {
                         {/* Logged In */}
 
                         <li>
-                            <Link to="/products">
-                                Products
-                            </Link>
-                        </li>
-
-                        <li>
                             <Link to="/seller-dashboard">
                                 Dashboard
                             </Link>
